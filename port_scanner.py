@@ -1,8 +1,8 @@
 """First things first.
 
-Reconnaissance: An attacker discover where the vulnerabilities
+Reconnaissance: An ethical hacker discovers where the vulnerabilities
 are before selecting the exploits for a target.
-this program scans for open TCP ports.
+This program scans for open TCP ports.
 It sends TCP SYN packets to a series of ports and waits for
 TCP ACK response. (full three-way handshake)
 """
