@@ -2,9 +2,9 @@
 import socket
 import optparse
 
+
 def main():
     """Main function."""
-
     # specify the options needed to run the program
     parser = optparse.OptionParser(
         "usage %prog -H <target_host> -p <target_port>")
@@ -24,11 +24,11 @@ def main():
         # Send some data to the target host
         client.send("GET / HTTP/1.1\r\nHost: google.com\r\n\r\n")
         response = client.recv(4096)
-        print response
+        print (response)
         client.close()
     except Exception, e:
-        print "ERROR OCCURED: "
-        print e
+        print ("ERROR OCCURED: ")
+        print (e)
 
 if __name__ == '__main__':
     main()
