@@ -9,7 +9,7 @@ TCP ACK response. (full three-way handshake)
 
 import optparse
 from threading import Thread, Semaphore
-from socket import *
+import socket
 
 # Semaphore to prevent threads from outputing to screen at the same time
 screenlock = Semaphore(value=1)
@@ -18,7 +18,7 @@ screenlock = Semaphore(value=1)
 def connection_scan(target_host, target_port):
     """A function that resolves the IP to connect to the target host."""
     try:
-        tcp_socket = socket(AF_INET, SOCK_STREAM)
+        tcp_socket = socket(socket.AF_INET, socket.SOCK_STREAM)
         tcp_socket.connect(target_host, target_port)
         tcp_socket.send('Python in action\r\n')
         results = tcp_socket.recv(100)
@@ -36,17 +36,17 @@ def connection_scan(target_host, target_port):
 def port_scan(target_host, target_ports):
     """A function that scans for open ports on a connected host."""
     try:
-        target_ip = gethostbyname(target_host)
+        target_ip = socket.gethostbyname(target_host)
     except:
         print ("[-] Cannot resolve '%s': Unkwown host" % target_host)
         return
 
     try:
-        target_name = gethostbyaddr(target_ip)
+        target_name = socket.gethostbyaddr(target_ip)
         print ('\n[+] Scan results for: ' + target_name[0])
     except:
         print ('\n[+] Scan results for: ' + target_ip)
-    setdefaulttimeout(1)
+    socket.setdefaulttimeout(1)
 
     for port in target_ports:
         # spawn a thread for each port scan
