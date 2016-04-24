@@ -30,7 +30,7 @@ def main():
     target_ports = str(options.target_port).split(',')
 
     if (target_host is None) | (target_ports[0] is None):
-        print parser.usage
+        print (parser.usage)
         exit(0)
 
     for port in target_ports:
